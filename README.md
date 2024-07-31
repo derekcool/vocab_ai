@@ -16,3 +16,6 @@ ollama run llama3.1
 # Example
 python src/main.py words/sample.txt
 ```
+
+## Notes
+You can put your own word files in mywords folder. It'll be git ignored.
