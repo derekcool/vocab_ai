@@ -4,8 +4,12 @@ from explanation import generate_explanation, generate_example
 
 def review_words(words):
     random.shuffle(words)
+    total = 0
     for word in words:
-        print(word)
+        total += 1
+        print("[{}/{}]".format(total, len(words)))
+        print()
+        print("\t{}".format(word))
         print()
         while True:
             cmd = input("1-explanation. 2-example. 3-next word. q-quit")

@@ -9,10 +9,10 @@ def main_loop(words):
     while True:
         print("1: review words.")
         print("2: missing word practice")
-        print("0: exit")
+        print("q: exit")
         prog = input("select the program number: ")
         print()
-        if prog == '0':
+        if prog == 'q':
             break
         if prog == '1':
             review_words(words)

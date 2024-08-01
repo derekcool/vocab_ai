@@ -5,6 +5,10 @@ The default program uses Ollama API running locally.
 
 But it can be easily modified to use other LLM, either online or locally. Check the query method in utils.py
 
+Games includes
+- review words with AI generated explanation and examples
+- sentence with missing word quiz (multiple choice)
+
 ## How to use
 1. run ollama, replace model name if necessary.
 ```commandline
