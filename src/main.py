@@ -1,8 +1,9 @@
 import random
 from utils import *
-from reviews import review_words
+from queries import review_words
 from missing_word_quiz import missing_word_quiz
 import sys
+import myconfigs
 
 
 def main_loop(words):
@@ -22,12 +23,19 @@ def main_loop(words):
 
 
 if __name__ == '__main__':
+    myconfigs.load_configs("../configs.ini")
+    myconfigs.load_configs("../user_configs.ini")
+    print("config loaded")
+    for k, v in myconfigs.configs.items():
+        print("\t{} = {}".format(k, v))
+    print()
     if len(sys.argv) != 2:
         print("Usage: python src/main.py [words_file_path]")
     else:
-        words = read_words(sys.argv[1])
+        filename = sys.argv[1]
+        print("loading words from '{}'".format(filename))
+        words = read_words(filename)
         random.shuffle(words)
-        # print(words)
         print("{} words read".format(len(words)))
         print()
         main_loop(words)

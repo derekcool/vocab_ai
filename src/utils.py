@@ -1,6 +1,6 @@
 import json
 import requests
-import configs as configs
+import myconfigs
 
 
 def query(prompt):
@@ -9,11 +9,11 @@ def query(prompt):
         "Content-Type": "application/json"
     }
     data = {
-        "model": configs.model,
+        "model": myconfigs.configs["model"],
         "prompt": prompt,
         "stream": False
     }
-    if configs.debug:
+    if myconfigs.configs["debug"]:
         print("sending prompt:", prompt)
     response = requests.post(url, headers=headers, data=json.dumps(data))
     if response.status_code == 200:
@@ -26,7 +26,6 @@ def query(prompt):
 
 
 def read_words(filename):
-    print("reading words from '{}'".format(filename))
     words = []
     with open(filename) as f:
         for line in f.readlines():

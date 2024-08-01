@@ -43,7 +43,7 @@ def missing_word_quiz(words):
             except:
                 print("enter the number next to the word.")
         print()
-        cmd = input("Press 'e' for explanation. 'q' to quit. Other for the next quiz.")
+        cmd = input("Press 'e' for explanation. 'q' to quit. Press 'Enter' the next quiz.")
         if cmd == 'e':
             try:
                 print("[explanation: ...]")

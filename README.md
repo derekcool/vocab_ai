@@ -14,12 +14,42 @@ Games includes
 ```commandline
 ollama run llama3.1
 ```
-2. modify configs.py to set the correct model name, level, etc.
-3. run the main.py with the word filename
+2. run the main.py with the word filename
 ```
 # Example
 python src/main.py words/sample.txt
 ```
 
-## Notes
-You can put your own word files in mywords folder. It'll be git ignored.
+## Customization
+### User Word Files
+You can create your own word file and put them in the mywords folder. This folder is not tracked by git.
+
+The file format is one word per line.
+```
+word1
+word2
+word3
+...
+
+```
+
+You can add comment to the file using the format
+```
+# comment here
+```
+
+### user_configs.ini
+You can overwrite the default configs.ini values by adding key=value pair in the user_configs.ini. 
+
+This file is not tracked by git. Some of the common configs you might customize are
+
+#### level
+This config describes the target user, which will allow AI to generate explanation, quiz or examples targeting those target users.
+
+Example: following are all legitimate values. AI is flexible.
+- level = grade 4 student
+- level = university student
+- level = professional
+
+#### model
+Change this to match the model name you run using ollama.
