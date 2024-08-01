@@ -2,7 +2,7 @@ import random
 from explanation import generate_example, generate_explanation
 
 
-def missing_word_quiz(words):
+def correct_word_quiz(words):
     random.shuffle(words)
     num_correct = 0
     total = 0
@@ -14,7 +14,7 @@ def missing_word_quiz(words):
             candidates.insert(random.randint(0, len(candidates)), word)
         print("[creating quiz {}/{} ...]".format(total, len(words)))
         print()
-        e = generate_example(word)
+        e = generate_explanation(word)
         lines = e.split('\n')
         for line in lines:
             if line.startswith("Here is an example"):
@@ -32,7 +32,7 @@ def missing_word_quiz(words):
             print("{}: {}".format(i+1, candidates[i]))
         print()
         while True:
-            answer = input("Select the correct word to fill the blank: ")
+            answer = input("Select the correct word that match the definition: ")
             try:
                 i = int(answer) - 1
                 if 0 <= i < len(candidates):
@@ -45,18 +45,8 @@ def missing_word_quiz(words):
             except:
                 print("enter the number next to the word.")
         print()
-        cmd = input("Press 'e' for explanation. 'q' to quit. Press 'Enter' the next quiz.")
-        if cmd == 'e':
-            try:
-                print("[explanation: ...]")
-                explanation = generate_explanation(word)
-                print()
-                print(explanation)
-                print()
-                input("Press anything for the next quiz.")
-            except:
-                print("Error: cannot find the explanation.")
-        elif cmd == 'q':
+        cmd = input("Press 'Enter' the next quiz. 'q' to quit")
+        if cmd == 'q':
             break
     print()
     print("Summary: total corrects = {}/{} ({:.1f}%)".format(num_correct, total, num_correct * 100 / total))

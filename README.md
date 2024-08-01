@@ -8,6 +8,7 @@ But it can be easily modified to use other LLM, either online or locally. Check 
 Games includes
 - review words with AI generated explanation and examples
 - sentence with missing word quiz (multiple choice)
+- guess the correct word from the definition.
 
 ## How to use
 1. run ollama, replace model name if necessary.

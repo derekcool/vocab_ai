@@ -2,6 +2,7 @@ import random
 from utils import *
 from review_words import review_words
 from missing_word_quiz import missing_word_quiz
+from correct_word_quiz import correct_word_quiz
 import sys
 import myconfigs
 
@@ -10,6 +11,7 @@ def main_loop(words):
     while True:
         print("1: review words.")
         print("2: missing word practice")
+        print("3: correct word practice")
         print("q: exit")
         prog = input("select the program number: ")
         print()
@@ -19,6 +21,8 @@ def main_loop(words):
             review_words(words)
         elif prog == '2':
             missing_word_quiz(words)
+        elif prog == '3':
+            correct_word_quiz(words)
         print()
 
 
