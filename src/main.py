@@ -1,6 +1,6 @@
 import random
 from utils import *
-from queries import review_words
+from review_words import review_words
 from missing_word_quiz import missing_word_quiz
 import sys
 import myconfigs
