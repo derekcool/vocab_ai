@@ -118,4 +118,6 @@ business_expense.py
 
 *.swp
 
+# vocab_ai
 mywords/
+user_configs.ini
