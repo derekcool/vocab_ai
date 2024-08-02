@@ -5,7 +5,6 @@ from problems import multiple_choice_problem, fill_in_blanks_problem
 from content_utils import generate_example, generate_explanation
 import sys
 import os.path
-import pickle
 import myconfigs
 
 

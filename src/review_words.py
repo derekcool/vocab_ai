@@ -12,7 +12,7 @@ def review_words(words):
         print("\t{}".format(word))
         print()
         while True:
-            cmd = input("1-explanation. 2-example. 3-next word. q-quit: ")
+            cmd = input("1-definition. 2-example. 3-next word. q-quit: ")
             if cmd == '1':
                 print("[thinking...]")
                 print()
@@ -20,7 +20,7 @@ def review_words(words):
                     exp = generate_explanation(word)
                     print(exp)
                 except:
-                    print("Error generating explanation.")
+                    print("Error generating definition.")
             elif cmd == '2':
                 print("[thinking...]")
                 print()
@@ -28,7 +28,7 @@ def review_words(words):
                     exp = generate_example(word)
                     print(exp)
                 except:
-                    print("Error generating explanation.")
+                    print("Error generating definition.")
             if cmd == '3' or cmd == 'q':
                 break
             print()
