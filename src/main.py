@@ -1,7 +1,7 @@
 import random
 from utils import *
 from review_words import review_words
-from problems import multiple_choice_problem
+from problems import multiple_choice_problem, fill_in_blanks_problem
 from content_utils import generate_example, generate_explanation
 import sys
 import myconfigs
@@ -53,6 +53,8 @@ def main_loop(words):
         print("1: review words.")
         print("2: find the missing word in a sentence (MC)")
         print("3: guess the correct word from the definition (MC)")
+        print("4: find the missing word in a sentence (Type)")
+        print("5: guess the correct word from the definition (Type)")
         print("q: exit")
         prog = input("select the program number: ")
         print()
@@ -64,6 +66,10 @@ def main_loop(words):
             problem_loop(words, multiple_choice_problem, generate_example, True)
         elif prog == '3':
             problem_loop(words, multiple_choice_problem, generate_explanation, False)
+        elif prog == '4':
+            problem_loop(words, fill_in_blanks_problem, generate_example, True)
+        elif prog == '5':
+            problem_loop(words, fill_in_blanks_problem, generate_explanation, False)
         print()
 
 

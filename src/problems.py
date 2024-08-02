@@ -42,9 +42,13 @@ def fill_in_blanks_problem(word, words, content_generator):
             continue
         if len(line) == 0:
             continue
-        line = line.replace(word, "_____")
+        if len(word) > 1:
+            replacement = word[0] + '_' * (len(word) - 1)
+        else:
+            replacement = '_'
+        line = line.replace(word, replacement)
         word2 = word.capitalize()
-        line = line.replace(word2, "_____")
+        line = line.replace(word2, replacement)
         print(line, "\n")
     print()
     answer = input("Type the missing word: ")
