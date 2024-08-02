@@ -17,11 +17,13 @@ def problem_loop(words, problem_generator, content_generator, option_show_explan
         total += 1
         print("[creating quiz {}/{} ...]".format(total, len(words)))
         print()
+        myconfigs.progress["total"][word] = myconfigs.progress["total"].get(word, 0) + 1
         is_correct = problem_generator(word, words, content_generator)
         if is_correct:
             print()
             print("\tCorrect!")
             num_correct += 1
+            myconfigs.progress["correct"][word] = myconfigs.progress["correct"].get(word, 0) + 1
         else:
             print("\tIncorrect. The answer is {}.".format(word))
         print()
@@ -136,8 +138,10 @@ if __name__ == '__main__':
         print("config loaded")
     for k, v in myconfigs.configs.items():
         print("\t{} = {}".format(k, v))
+
+    myconfigs.load_progress()
+
     print()
-        # print("Usage: python src/main.py [words_file_path]")
     if len(sys.argv) > 1:
         filename = sys.argv[1]
         print("loading words from '{}'".format(filename))
@@ -148,6 +152,7 @@ if __name__ == '__main__':
     else:
         words = []
     main_loop(words)
+    myconfigs.save_progress()
 
 
 

@@ -1,7 +1,10 @@
 import configparser
+import pickle
+import os.path
 
 
 configs = {}
+progress = {}
 
 
 def load_configs(filename):
@@ -27,3 +30,26 @@ def load_default_configs():
     configs["debug"] = False
     configs["host"] = "localhost"
     configs["port"] = 11434
+    configs["progress_path"] = "./"
+    configs["progress_file"] = "user.progress"
+
+
+def load_progress():
+    global configs, progress
+    path = "{}/{}".format(configs["progress_path"], configs["progress_file"])
+    if os.path.exists(path):
+        with open(path, "rb") as f:
+            progress = pickle.load(f)
+    else:
+        progress = {
+            "total": {},
+            "correct": {},
+        }
+    print(progress)
+
+def save_progress():
+    global configs, progress
+    path = "{}/{}".format(configs["progress_path"], configs["progress_file"])
+    with open(path, "wb") as file:
+        pickle.dump(progress, file, pickle.HIGHEST_PROTOCOL)
+
