@@ -1,8 +1,7 @@
 import random
-from explanation import generate_example, generate_explanation
 
 
-def correct_word_quiz(words):
+def multiple_choice_problem(words, question_generator):
     random.shuffle(words)
     num_correct = 0
     total = 0
@@ -14,12 +13,10 @@ def correct_word_quiz(words):
             candidates.insert(random.randint(0, len(candidates)), word)
         print("[creating quiz {}/{} ...]".format(total, len(words)))
         print()
-        e = generate_explanation(word)
+        e = question_generator(word)
         lines = e.split('\n')
         for line in lines:
-            if line.startswith("Here is an example"):
-                continue
-            if line.startswith("Here is a sentence using the word"):
+            if line.startswith("Here is an example") or line.startswith("Here is a sentence using"):
                 continue
             if len(line) == 0:
                 continue
@@ -31,19 +28,22 @@ def correct_word_quiz(words):
         for i in range(len(candidates)):
             print("{}: {}".format(i+1, candidates[i]))
         print()
-        while True:
-            answer = input("Select the correct word that match the definition: ")
-            try:
-                i = int(answer) - 1
-                if 0 <= i < len(candidates):
-                    if candidates[i] == word:
-                        print("correct")
-                        num_correct += 1
-                    else:
-                        print("The correct answer is {}.".format(word))
-                    break
-            except:
-                print("enter the number next to the word.")
+        answer = input("Select or type the correct word: ")
+        is_correct = False
+        try:
+            i = int(answer) - 1
+            if 0 <= i < len(candidates):
+                if candidates[i] == word:
+                    is_correct = True
+        except:
+            if answer == word:
+                is_correct = True
+        if is_correct:
+            print()
+            print("\tCorrect!")
+            num_correct += 1
+        else:
+            print("\tIncorrect. The answer is {}.".format(word))
         print()
         cmd = input("Press 'Enter' the next quiz. 'q' to quit")
         if cmd == 'q':
@@ -52,6 +52,7 @@ def correct_word_quiz(words):
     print("Summary: total corrects = {}/{} ({:.1f}%)".format(num_correct, total, num_correct * 100 / total))
     print()
     input("Press 'Enter' to continue.")
+
 
 
 

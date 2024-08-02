@@ -1,8 +1,8 @@
 import random
 from utils import *
 from review_words import review_words
-from missing_word_quiz import missing_word_quiz
-from correct_word_quiz import correct_word_quiz
+from multiple_choices import multiple_choice_problem
+from explanation import generate_example, generate_explanation
 import sys
 import myconfigs
 
@@ -20,16 +20,22 @@ def main_loop(words):
         if prog == '1':
             review_words(words)
         elif prog == '2':
-            missing_word_quiz(words)
+            multiple_choice_problem(words, generate_example)
+            # missing_word_quiz(words)
         elif prog == '3':
-            correct_word_quiz(words)
+            multiple_choice_problem(words, generate_explanation)
+            # correct_word_quiz(words)
         print()
 
 
 if __name__ == '__main__':
     myconfigs.load_configs("configs.ini")
     myconfigs.load_configs("user_configs.ini")
-    print("config loaded")
+    if len(myconfigs.configs) == 0:
+        print("Cannot find any configs. Load default configs.")
+        myconfigs.load_default_configs()
+    else:
+        print("config loaded")
     for k, v in myconfigs.configs.items():
         print("\t{} = {}".format(k, v))
     print()
