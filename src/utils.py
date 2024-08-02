@@ -4,7 +4,7 @@ import myconfigs
 
 
 def query(prompt):
-    url = "http://localhost:11434/api/generate"
+    url = "http://{}:{}/api/generate".format(myconfigs.configs["host"], myconfigs.configs["port"])
     headers = {
         "Content-Type": "application/json"
     }

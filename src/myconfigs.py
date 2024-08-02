@@ -25,3 +25,5 @@ def load_default_configs():
     configs["level"] = "grade 4 student"
     configs["model"] = "llama3.1"
     configs["debug"] = False
+    configs["host"] = "localhost"
+    configs["port"] = 11434

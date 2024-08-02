@@ -10,6 +10,10 @@ Games includes
 - sentence with missing word quiz (multiple choice)
 - guess the correct word from the definition.
 
+Question format includes
+- multiple choice
+- fill-in the blank
+
 ## How to use
 1. run ollama, replace model name if necessary.
 ```commandline
@@ -19,6 +23,9 @@ ollama run llama3.1
 ```
 # Example
 python src/main.py words/sample.txt
+
+# or without word list
+python src/main.py
 ```
 
 ## Customization
