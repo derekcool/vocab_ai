@@ -2,7 +2,7 @@ import random
 from utils import *
 from review_words import review_words
 from multiple_choices import multiple_choice_problem
-from explanation import generate_example, generate_explanation
+from generators import generate_example, generate_explanation
 import sys
 import myconfigs
 

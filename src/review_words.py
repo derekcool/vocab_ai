@@ -1,5 +1,5 @@
 import random
-from explanation import generate_explanation, generate_example
+from generators import generate_explanation, generate_example
 
 
 def review_words(words):
