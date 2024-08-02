@@ -27,8 +27,8 @@ def main_loop(words):
 
 
 if __name__ == '__main__':
-    myconfigs.load_configs("../configs.ini")
-    myconfigs.load_configs("../user_configs.ini")
+    myconfigs.load_configs("configs.ini")
+    myconfigs.load_configs("user_configs.ini")
     print("config loaded")
     for k, v in myconfigs.configs.items():
         print("\t{} = {}".format(k, v))
