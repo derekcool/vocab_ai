@@ -38,10 +38,4 @@ def read_words(filename):
 
 
 def sort_progress(word):
-    total = myconfigs.progress['total'].get(word, 0)
-    correct = myconfigs.progress['correct'].get(word, 0)
-    if total > 0:
-        key = correct / total
-    else:
-        key = 0
-    return key
+    return myconfigs.progress['correct'].get(word, 0)

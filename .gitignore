@@ -121,4 +121,4 @@ business_expense.py
 # vocab_ai
 mywords/
 myconfigs.ini
-user.progress
+*.progress
