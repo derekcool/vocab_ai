@@ -1,9 +1,11 @@
 import random
 from content_utils import generate_explanation, generate_example
+from utils import sort_progress
 
 
 def review_words(words):
     random.shuffle(words)
+    words.sort(key=sort_progress)
     total = 0
     for word in words:
         total += 1

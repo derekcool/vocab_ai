@@ -35,3 +35,13 @@ def read_words(filename):
             if len(word) > 0:
                 words.append(word)
     return words
+
+
+def sort_progress(word):
+    total = myconfigs.progress['total'].get(word, 0)
+    correct = myconfigs.progress['correct'].get(word, 0)
+    if total > 0:
+        key = correct / total
+    else:
+        key = 0
+    return key

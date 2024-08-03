@@ -10,6 +10,7 @@ import myconfigs
 
 def problem_loop(words, problem_generator, content_generator, option_show_explanation):
     random.shuffle(words)
+    words.sort(key=sort_progress)
     num_correct = 0
     total = 0
     for word in words:
@@ -145,7 +146,6 @@ if __name__ == '__main__':
         filename = sys.argv[1]
         print("loading words from '{}'".format(filename))
         words = read_words(filename)
-        random.shuffle(words)
         print("{} words read".format(len(words)))
         print()
     else:
