@@ -32,6 +32,7 @@ def load_default_configs():
     configs["port"] = 11434
     configs["progress_path"] = "./"
     configs["progress_file"] = "user.progress"
+    configs["speech_rate"] = 150
 
 
 def load_progress():

@@ -39,3 +39,21 @@ def read_words(filename):
 
 def sort_progress(word):
     return myconfigs.progress['correct'].get(word, 0)
+
+
+def print_obfuscated(text, word, signatures):
+    lines = text.split('\n')
+    for line in lines:
+        sigfound = False
+        for sig in signatures:
+            if line.startswith(sig):
+                sigfound = True
+                break
+        if sigfound:
+            continue
+        if len(line) == 0:
+            continue
+        line = line.replace(word, "_____")
+        word2 = word.capitalize()
+        line = line.replace(word2, "_____")
+        print(line, "\n")

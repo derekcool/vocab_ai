@@ -2,10 +2,12 @@ import random
 from utils import *
 from review_words import review_words
 from problems import multiple_choice_problem, fill_in_blanks_problem
+from spelling_quiz import dictation
 from content_utils import generate_example, generate_explanation
 import sys
 import os.path
 import myconfigs
+import speech
 
 
 def problem_loop(words, problem_generator, content_generator, option_show_explanation):
@@ -98,6 +100,7 @@ def main_loop(words):
         print("5: guess the correct word from the definition (Type)")
         print("6: create/edit word list")
         print("7: load word list")
+        print("8: dictation")
         print("q: exit")
         prog = input("select the program number: ")
         print()
@@ -125,6 +128,8 @@ def main_loop(words):
             else:
                 print("Sorry this file does not exist.")
                 print()
+        elif prog == '8':
+            problem_loop(words, dictation, None, True)
         print()
 
 
@@ -140,6 +145,7 @@ if __name__ == '__main__':
         print("\t{} = {}".format(k, v))
 
     myconfigs.load_progress()
+    speech.set_rate(myconfigs.configs["speech_rate"])
 
     print()
     if len(sys.argv) > 1:
