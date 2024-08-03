@@ -14,9 +14,8 @@ def review_words(words):
         print()
         print("\t{}".format(word))
         print()
-        speech.say(word)
         while True:
-            cmd = input("1-definition. 2-example. 3-next word. q-quit: ")
+            cmd = input("1-definition. 2-example. 3-pronunciation. 4-next word. q-quit: ")
             if cmd == '1':
                 print("[thinking...]")
                 print()
@@ -33,7 +32,9 @@ def review_words(words):
                     print(exp)
                 except:
                     print("Error generating definition.")
-            if cmd == '3' or cmd == 'q':
+            elif cmd == '3':
+                speech.say(word)
+            elif cmd == '4' or cmd == 'q':
                 break
             print()
         print()
