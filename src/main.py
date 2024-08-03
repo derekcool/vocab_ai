@@ -12,7 +12,8 @@ import speech
 
 def problem_loop(words, problem_generator, content_generator, option_show_explanation):
     random.shuffle(words)
-    words.sort(key=sort_progress)
+    if myconfigs.configs["word_sort_rule"] == "progress":
+        words.sort(key=sort_progress)
     num_correct = 0
     total = 0
     for word in words:
@@ -93,14 +94,14 @@ def main_loop(words):
         else:
             print("1 word")
         print("----------------------")
-        print("1: review words.")
-        print("2: find the missing word in a sentence (MC)")
-        print("3: guess the correct word from the definition (MC)")
-        print("4: find the missing word in a sentence (Type)")
-        print("5: guess the correct word from the definition (Type)")
-        print("6: create/edit word list")
-        print("7: load word list")
-        print("8: dictation")
+        print("1: review words")
+        print("2: dictation")
+        print("3: find the missing word in a sentence (MC)")
+        print("4: guess the correct word from the definition (MC)")
+        print("5: find the missing word in a sentence (Type)")
+        print("6: guess the correct word from the definition (Type)")
+        print("7: create/edit word list")
+        print("8: load word list")
         print("q: exit")
         prog = input("select the program number: ")
         print()
@@ -109,18 +110,20 @@ def main_loop(words):
         if prog == '1':
             review_words(words)
         elif prog == '2':
-            problem_loop(words, multiple_choice_problem, generate_example, True)
+            problem_loop(words, dictation, None, True)
         elif prog == '3':
-            problem_loop(words, multiple_choice_problem, generate_explanation, False)
+            problem_loop(words, multiple_choice_problem, generate_example, True)
         elif prog == '4':
-            problem_loop(words, fill_in_blanks_problem, generate_example, True)
+            problem_loop(words, multiple_choice_problem, generate_explanation, False)
         elif prog == '5':
-            problem_loop(words, fill_in_blanks_problem, generate_explanation, False)
+            problem_loop(words, fill_in_blanks_problem, generate_example, True)
         elif prog == '6':
+            problem_loop(words, fill_in_blanks_problem, generate_explanation, False)
+        elif prog == '7':
             new_words = create_edit_word_list()
             if new_words is not None:
                 words = new_words
-        elif prog == '7':
+        elif prog == '8':
             path = input("enter the file path: ")
             if os.path.exists(path):
                 words = read_words(path)
@@ -128,8 +131,6 @@ def main_loop(words):
             else:
                 print("Sorry this file does not exist.")
                 print()
-        elif prog == '8':
-            problem_loop(words, dictation, None, True)
         print()
 
 

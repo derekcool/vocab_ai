@@ -33,6 +33,7 @@ def load_default_configs():
     configs["progress_path"] = "./"
     configs["progress_file"] = "user.progress"
     configs["speech_rate"] = 150
+    configs["word_sort_rule"] = "progress"
 
 
 def load_progress():
@@ -46,7 +47,7 @@ def load_progress():
             "total": {},
             "correct": {},
         }
-    print(progress)
+
 
 def save_progress():
     global configs, progress
