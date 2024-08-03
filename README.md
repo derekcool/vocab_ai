@@ -46,8 +46,8 @@ You can add comment to the file using the format
 # comment here
 ```
 
-### user_configs.ini
-You can overwrite the default configs.ini values by adding key=value pair in the user_configs.ini. 
+### myconfigs.ini
+You can overwrite the default configs.ini values by adding key=value pair in the myconfigs.ini. 
 
 This file is not tracked by git. Some of the common configs you might customize are
 

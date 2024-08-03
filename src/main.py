@@ -130,7 +130,7 @@ def main_loop(words):
 
 if __name__ == '__main__':
     myconfigs.load_configs("configs.ini")
-    myconfigs.load_configs("user_configs.ini")
+    myconfigs.load_configs("myconfigs.ini")
     if len(myconfigs.configs) == 0:
         print("Cannot find any configs. Load default configs.")
         myconfigs.load_default_configs()
