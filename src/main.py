@@ -1,6 +1,6 @@
 import random
 from utils import *
-from review_words import review_words
+import reviews
 from problems import multiple_choice_problem, fill_in_blanks_problem
 from spelling_quiz import dictation
 from content_utils import generate_example, generate_explanation
@@ -102,13 +102,14 @@ def main_loop(words):
         print("6: guess the correct word from the definition (Type)")
         print("7: create/edit word list")
         print("8: load word list")
+        print("9: dictionary")
         print("q: exit")
         prog = input("select the program number: ")
         print()
         if prog == 'q':
             break
         if prog == '1':
-            review_words(words)
+            reviews.review_words(words)
         elif prog == '2':
             problem_loop(words, dictation, None, True)
         elif prog == '3':
@@ -131,6 +132,8 @@ def main_loop(words):
             else:
                 print("Sorry this file does not exist.")
                 print()
+        elif prog == '9':
+            reviews.dictionary()
         print()
 
 

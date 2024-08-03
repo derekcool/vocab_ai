@@ -1,4 +1,5 @@
 import random
+import speech
 from content_utils import generate_explanation, generate_example
 from utils import sort_progress
 
@@ -13,6 +14,7 @@ def review_words(words):
         print()
         print("\t{}".format(word))
         print()
+        speech.say(word)
         while True:
             cmd = input("1-definition. 2-example. 3-next word. q-quit: ")
             if cmd == '1':
@@ -37,3 +39,37 @@ def review_words(words):
         print()
         if cmd == 'Q' or cmd == 'q':
             break
+
+
+def dictionary():
+    word = ''
+    while word != 'q':
+        word = input("Enter a word (q to quit): ")
+        word = word.lstrip().rstrip()
+        if word == 'q':
+            break
+        while True:
+            print()
+            print(word)
+            print()
+            cmd = input("1-definition. 2-example. 3-next.")
+            if cmd == '1':
+                print("[thinking...]")
+                print()
+                try:
+                    exp = generate_explanation(word)
+                    print(exp)
+                except:
+                    print("Error generating definition.")
+            elif cmd == '2':
+                print("[thinking...]")
+                print()
+                try:
+                    exp = generate_example(word)
+                    print(exp)
+                except:
+                    print("Error generating definition.")
+            if cmd == '3' or cmd == 'q':
+                break
+            print()
+        print()
