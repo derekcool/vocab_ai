@@ -2,9 +2,9 @@ from utils import query
 import myconfigs
 
 
-def generate_explanation(word):
+def generate_explanation(word, style):
     level = myconfigs.configs["level"]
-    ep = query("Explain the meaning of '{}' to a {} using 1 concise sentence? Definition:".format(word, level))
+    ep = query("Explain the meaning of '{}' to a {}{}. Definition:".format(word, level, style))
     if ep is None:
         raise Exception("AI didn't generate any explanation.")
     return ep

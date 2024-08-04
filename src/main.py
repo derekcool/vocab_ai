@@ -104,6 +104,7 @@ def main_loop(words):
         print("8: load word list")
         print("9: dictionary")
         print("q: exit")
+        print()
         prog = input("select the program number: ")
         print()
         if prog == 'q':
@@ -138,6 +139,7 @@ def main_loop(words):
 
 
 if __name__ == '__main__':
+    print("Vocab AI: seting up...")
     myconfigs.load_configs("configs.ini")
     myconfigs.load_configs("myconfigs.ini")
     if len(myconfigs.configs) == 0:
@@ -160,6 +162,15 @@ if __name__ == '__main__':
         print()
     else:
         words = []
+
+
+    print("------------------ Tip ----------------")
+    print("* means you change the response from AI by appending context to the command selection.")
+    print("Examples:")
+    print("1-definition[m]: 1 using 1 sentence less than 8 words => generating definition using 1 sentence less than 8 words.")
+    print("2-example[m]: 2 science => generating a example about science")
+    print("---------------------------------------")
+
     main_loop(words)
     myconfigs.save_progress()
 
