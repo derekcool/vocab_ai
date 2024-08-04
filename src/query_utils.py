@@ -23,6 +23,8 @@ def juhe_query(prompt):
         'model': myconfigs.configs["model"],
         'messages': message,
     }
+    if myconfigs.configs["debug"]:
+        print("sending prompt:", prompt)
     response = requests.post('https://api.juheai.top/v1/chat/completions', headers=headers, data=json.dumps(data))
     if response.status_code == 200:
         data = response.json()

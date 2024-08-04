@@ -1,7 +1,11 @@
+import platform
 import pyttsx3
 
 
-engine = pyttsx3.init('nsss')
+if platform.system() == 'Darwin':
+    engine = pyttsx3.init('nsss')
+else:
+    engine = pyttsx3.init()
 
 
 def say(text):
