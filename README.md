@@ -14,10 +14,17 @@ Question format includes
 - multiple choice
 - fill-in the blank
 
-## How to use
-1. run ollama, replace model name if necessary.
+## Setup AI
+### Ollama
+run ollama3.1, replace model name if necessary.
 ```commandline
 ollama run llama3.1
+```
+
+## How to use
+1. run setup.sh, it will generate myconfigs.ini file where you can customize settings. It will also create a mywords dir where you can place your own word list files.
+```
+./setup.sh
 ```
 2. run the main.py with the word filename
 ```

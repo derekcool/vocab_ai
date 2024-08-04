@@ -1,0 +1,10 @@
+; comment out any key=value pair you want to customize
+
+[AI]
+; 蛋壳API
+; ai = danke
+; api_key = sk_********
+
+[General]
+; target user learning level
+; level = grade 4 student
