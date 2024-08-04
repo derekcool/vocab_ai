@@ -165,7 +165,7 @@ if __name__ == '__main__':
 
 
     print("------------------ Tip ----------------")
-    print("* means you change the response from AI by appending context to the command selection.")
+    print("[m] means you change the response from AI by appending context to the command selection.")
     print("Examples:")
     print("1-definition[m]: 1 using 1 sentence less than 8 words => generating definition using 1 sentence less than 8 words.")
     print("2-example[m]: 2 science => generating a example about science")
