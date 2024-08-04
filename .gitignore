@@ -117,6 +117,7 @@ testing.py
 business_expense.py
 
 *.swp
+.DS_Store
 
 # vocab_ai
 mywords/

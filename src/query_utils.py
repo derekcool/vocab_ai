@@ -1,6 +1,5 @@
 import requests
 import json
-
 import myconfigs
 
 
@@ -21,13 +20,13 @@ def juhe_query(prompt):
         'Authorization': f'Bearer {api_key}',
     }
     data = {
-        'model': 'gpt-4-1106-preview',
+        'model': myconfigs.configs["model"],
         'messages': message,
     }
     response = requests.post('https://api.juheai.top/v1/chat/completions', headers=headers, data=json.dumps(data))
     if response.status_code == 200:
-        json = response.json()
-        content = json['choices'][0]['message']['content']
+        data = response.json()
+        content = data['choices'][0]['message']['content']
         return content
     return None
 
