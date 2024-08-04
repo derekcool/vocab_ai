@@ -1,7 +1,23 @@
 import random
 import speech
-from content_utils import generate_explanation, generate_example
+from content_utils import *
 from utils import sort_progress
+
+
+def process_example_command(cmd, word):
+    tokens = cmd.split(' ', maxsplit=1)
+    if len(tokens) > 1:
+        about = tokens[1]
+        print("[generating example about {}...]".format(about))
+    else:
+        about = None
+        print("[generating example...]")
+    print()
+    try:
+        exp = generate_example(word, about)
+        print(exp)
+    except:
+        print("Error generating definition.")
 
 
 def review_words(words):
@@ -24,14 +40,8 @@ def review_words(words):
                     print(exp)
                 except:
                     print("Error generating definition.")
-            elif cmd == '2':
-                print("[thinking...]")
-                print()
-                try:
-                    exp = generate_example(word)
-                    print(exp)
-                except:
-                    print("Error generating definition.")
+            elif cmd.startswith('2'):
+                process_example_command(cmd, word)
             elif cmd == '3':
                 speech.say(word)
             elif cmd == '4' or cmd == 'q':
@@ -62,14 +72,8 @@ def dictionary():
                     print(exp)
                 except:
                     print("Error generating definition.")
-            elif cmd == '2':
-                print("[thinking...]")
-                print()
-                try:
-                    exp = generate_example(word)
-                    print(exp)
-                except:
-                    print("Error generating definition.")
+            elif cmd.startswith('2'):
+                process_example_command(cmd, word)
             if cmd == '3' or cmd == 'q':
                 break
             print()
