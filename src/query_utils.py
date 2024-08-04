@@ -23,9 +23,10 @@ def juhe_query(prompt):
         'model': myconfigs.configs["model"],
         'messages': message,
     }
+    url = 'https://api.juheai.top/v1/chat/completions'
     if myconfigs.configs["debug"]:
-        print("sending prompt:", prompt)
-    response = requests.post('https://api.juheai.top/v1/chat/completions', headers=headers, data=json.dumps(data))
+        print("sending {} prompt: {}".format(url, prompt))
+    response = requests.post(url, headers=headers, data=json.dumps(data))
     if response.status_code == 200:
         data = response.json()
         content = data['choices'][0]['message']['content']
@@ -34,7 +35,6 @@ def juhe_query(prompt):
 
 
 def ollama_query(prompt):
-    url = "http://{}:{}/api/generate".format(myconfigs.configs["host"], myconfigs.configs["port"])
     headers = {
         "Content-Type": "application/json"
     }
@@ -43,8 +43,9 @@ def ollama_query(prompt):
         "prompt": prompt,
         "stream": False
     }
+    url = "http://{}:{}/api/generate".format(myconfigs.configs["host"], myconfigs.configs["port"])
     if myconfigs.configs["debug"]:
-        print("sending prompt:", prompt)
+        print("sending {} prompt: {}".format(url, prompt))
     response = requests.post(url, headers=headers, data=json.dumps(data))
     if response.status_code == 200:
         restext = response.text

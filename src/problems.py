@@ -2,12 +2,12 @@ import random
 from utils import print_obfuscated
 
 
-def multiple_choice_problem(word, words, content_generator):
+def multiple_choice_problem(word, words, content_generator, mod):
     candidates = random.sample(words, 4)
     if word not in candidates:
         candidates.pop()
         candidates.insert(random.randint(0, len(candidates)), word)
-    e = content_generator(word)
+    e = content_generator(word, mod)
     print_obfuscated(e, word, ["Here is an example", "Here is a sentence using"])
     print()
     for i in range(len(candidates)):
@@ -25,8 +25,8 @@ def multiple_choice_problem(word, words, content_generator):
     return False
 
 
-def fill_in_blanks_problem(word, words, content_generator):
-    e = content_generator(word)
+def fill_in_blanks_problem(word, words, content_generator, mod):
+    e = content_generator(word, mod)
     lines = e.split('\n')
     for line in lines:
         if line.startswith("Here is an example") or line.startswith("Here is a sentence using"):

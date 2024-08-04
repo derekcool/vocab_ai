@@ -10,7 +10,7 @@ import myconfigs
 import speech
 
 
-def problem_loop(words, problem_generator, content_generator, option_show_explanation):
+def problem_loop(words, problem_generator, content_generator, mod, option_show_explanation):
     random.shuffle(words)
     if myconfigs.configs["word_sort_rule"] == "progress":
         words.sort(key=sort_progress)
@@ -21,7 +21,7 @@ def problem_loop(words, problem_generator, content_generator, option_show_explan
         print("[creating quiz {}/{} ...]".format(total, len(words)))
         print()
         myconfigs.progress["total"][word] = myconfigs.progress["total"].get(word, 0) + 1
-        is_correct = problem_generator(word, words, content_generator)
+        is_correct = problem_generator(word, words, content_generator, mod)
         if is_correct:
             print()
             print("\tCorrect!")
@@ -112,15 +112,15 @@ def main_loop(words):
         if prog == '1':
             reviews.review_words(words)
         elif prog == '2':
-            problem_loop(words, dictation, None, True)
+            problem_loop(words, dictation, None, None, True)
         elif prog == '3':
-            problem_loop(words, multiple_choice_problem, generate_example, True)
+            problem_loop(words, multiple_choice_problem, generate_example, None, True)
         elif prog == '4':
-            problem_loop(words, multiple_choice_problem, generate_explanation, False)
+            problem_loop(words, multiple_choice_problem, generate_explanation, "using 1 sentence", False)
         elif prog == '5':
-            problem_loop(words, fill_in_blanks_problem, generate_example, True)
+            problem_loop(words, fill_in_blanks_problem, generate_example, None, True)
         elif prog == '6':
-            problem_loop(words, fill_in_blanks_problem, generate_explanation, False)
+            problem_loop(words, fill_in_blanks_problem, generate_explanation, "using 1 sentence", False)
         elif prog == '7':
             new_words = create_edit_word_list()
             if new_words is not None:

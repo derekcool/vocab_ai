@@ -9,7 +9,7 @@ def process_definition_command(cmd, word):
     if len(tokens) > 1:
         style = tokens[1]
     else:
-        style = "using 1 concise sentence"
+        style = myconfigs.configs["definition_style"]
     print("[looking ({})...".format(style))
     print()
     try:
@@ -73,18 +73,14 @@ def dictionary():
             print()
             print(word)
             print()
-            cmd = input("1-definition. 2-example. 3-next.")
-            if cmd == '1':
-                print("[thinking...]")
-                print()
-                try:
-                    exp = generate_explanation(word)
-                    print(exp)
-                except:
-                    print("Error generating definition.")
+            cmd = input("1-definition[m]. 2-example[m]. 3-pronunciation. 4-next.")
+            if cmd.startswith('1'):
+                process_definition_command(cmd, word)
             elif cmd.startswith('2'):
                 process_example_command(cmd, word)
-            if cmd == '3' or cmd == 'q':
+            elif cmd == '3':
+                speech.say(word)
+            elif cmd == '4' or cmd == 'q':
                 break
             print()
         print()
