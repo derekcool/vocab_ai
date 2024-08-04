@@ -1,4 +1,4 @@
-from utils import query
+from query_utils import query
 import myconfigs
 
 

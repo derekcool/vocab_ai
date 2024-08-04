@@ -25,11 +25,13 @@ def load_configs(filename):
 
 
 def load_default_configs():
-    configs["level"] = "grade 4 student"
+    configs["ai"] = "ollama"
     configs["model"] = "llama3.1"
-    configs["debug"] = False
     configs["host"] = "localhost"
     configs["port"] = 11434
+    configs["debug"] = False
+
+    configs["level"] = "grade 4 student"
     configs["progress_path"] = "./"
     configs["progress_file"] = "user.progress"
     configs["speech_rate"] = 150

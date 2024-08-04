@@ -1,5 +1,5 @@
 import speech
-from content_utils import generate_explanation
+from prompt_utils import generate_explanation
 from utils import print_obfuscated
 
 

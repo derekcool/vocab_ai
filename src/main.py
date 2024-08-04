@@ -3,7 +3,7 @@ from utils import *
 import reviews
 from problems import multiple_choice_problem, fill_in_blanks_problem
 from spelling_quiz import dictation
-from content_utils import generate_example, generate_explanation
+from prompt_utils import generate_example, generate_explanation
 import sys
 import os.path
 import myconfigs
@@ -148,6 +148,8 @@ if __name__ == '__main__':
     else:
         print("config loaded")
     for k, v in myconfigs.configs.items():
+        if k == 'api_key':
+            continue
         print("\t{} = {}".format(k, v))
 
     myconfigs.load_progress()
