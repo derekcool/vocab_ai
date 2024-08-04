@@ -3,7 +3,8 @@ from utils import *
 import reviews
 from problems import multiple_choice_problem, fill_in_blanks_problem
 from spelling_quiz import dictation
-from prompt_utils import generate_example, generate_explanation
+from prompt_utils import *
+from synonyms import synonyms
 import sys
 import os.path
 import myconfigs
@@ -103,6 +104,8 @@ def main_loop(words):
         print("7: create/edit word list")
         print("8: load word list")
         print("9: dictionary")
+        print("10: synonym")
+        print("11: differences")
         print("q: exit")
         print()
         prog = input("select the program number: ")
@@ -135,6 +138,17 @@ def main_loop(words):
                 print()
         elif prog == '9':
             reviews.dictionary()
+        elif prog == '10':
+            synonyms()
+        elif prog == '11':
+            word1 = input("Enter the first word: ")
+            word2 = input("Enter the second word: ")
+            print("[looking for differences between {} and {}...]".format(word1, word2))
+            print()
+            e = explain_differences(word1, word2)
+            print(e)
+            print()
+            input("Enter to quit.")
         print()
 
 

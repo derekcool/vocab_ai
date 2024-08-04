@@ -27,3 +27,15 @@ def generate_example(word, about=None):
     return e
 
 
+def generate_synonyms(word):
+    level = myconfigs.configs["level"]
+    e = query("What are the synonyms of '{}' to a {}?".format(word, level))
+    if e is None:
+        raise Exception("AI didn't find any synonyms.")
+    return e
+
+
+def explain_differences(word1, word2):
+    level = myconfigs.configs["level"]
+    e = query("Explain the difference between {} and {} to a {}. Explain in a short and concise way.".format(word1, word2, level))
+    return e
