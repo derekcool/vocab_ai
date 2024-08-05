@@ -31,6 +31,8 @@ def juhe_query(prompt):
         data = response.json()
         content = data['choices'][0]['message']['content']
         return content
+    else:
+        print("Error:", response.status_code, response.text)
     return None
 
 

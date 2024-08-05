@@ -19,7 +19,6 @@ def process_definition_command(cmd, word):
         print("Error generating definition.")
 
 
-
 def process_example_command(cmd, word):
     tokens = cmd.split(' ', maxsplit=1)
     if len(tokens) > 1:
@@ -43,10 +42,10 @@ def review_words(words):
     for word in words:
         total += 1
         print("[{}/{}]".format(total, len(words)))
+        print()
+        print("\t{}".format(word))
+        print()
         while True:
-            print()
-            print("\t{}".format(word))
-            print()
             cmd = input("1-definition[m]. 2-example[m]. 3-pronunciation. 4-next word. q-quit: ")
             if cmd.startswith('1'):
                 process_definition_command(cmd, word)
