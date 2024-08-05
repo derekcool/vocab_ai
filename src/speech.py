@@ -1,21 +1,29 @@
 import platform
-import pyttsx3
 
 
-if platform.system() == 'Darwin':
-    engine = pyttsx3.init('nsss')
+is_mac = platform.system() == 'Darwin'
+
+if is_mac:
+    import subprocess
 else:
+    import pyttsx3
     engine = pyttsx3.init()
+    # engine = pyttsx3.init('nsss')
 
 
 def say(text):
-    engine.say(text)
-    engine.runAndWait()
+    if is_mac:
+        subprocess.run(['say', text])
+    else:
+        engine.say(text)
+        engine.runAndWait()
 
 
 def set_rate(rate):
-    engine.setProperty('rate', rate)
+    if not is_mac:
+        engine.setProperty('rate', rate)
 
 
 def set_volume(volume):
-    engine.setProperty('volume', volume)
+    if not is_mac:
+        engine.setProperty('volume', volume)

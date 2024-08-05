@@ -4,7 +4,7 @@
 ; 蛋壳API
 ; ai = danke
 ; api_key = sk_********
+; model = gpt-3.5-turbo
 
 [General]
-; target user learning level
 ; level = grade 4 student
