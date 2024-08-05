@@ -151,33 +151,38 @@ def main_loop(words):
             print()
             input("Enter to quit.")
         elif prog == '12':
-            random.shuffle(words)
-            for word in words:
-                while True:
-                    print("Make a sentence with '{}'. (n-next word. q-quit)".format(word))
+            while True:
+                word = input("Which word would you use? (l-list words, q-quit): ")
+                if word == 'l':
+                    print(words)
+                    print()
+                    continue
+                elif word == 'q':
+                    break
+                print()
+                cmd = None
+                while cmd != 'q':
+                    print("Make a sentence with '{}'.".format(word))
                     sentence = input()
-                    if sentence == 'n' or sentence == 'q':
-                        cmd = sentence
-                        break
                     print()
                     print("[Analyzing...]")
                     level = myconfigs.configs["level"]
                     analysis = query("Analyze the following sentence made with the word '{}'. Comment on what user did right, what to improve. Do not provide edited version for the user. The comment should target a {}. sentence: {}; comment:".format(word, level, sentence))
                     print(analysis)
                     print()
-                    cmd = input("m-make another sentence. i-improve the sentence. n-next word. q-quit")
-                    if cmd == 'm':
-                        continue
-                    elif cmd == 'i':
-                        print("[improving...]")
-                        improvement = query("Improve the following sentence for a {}. The new sentence must include the word '{}'. sentence: {}; improvement:".format(level, word, sentence))
-                        print()
-                        print(improvement)
-                        print()
-                    else:
+                    cmd = 'i'
+                    while cmd == 'i':
+                        cmd = input("m-make another sentence. i-improve the sentence. Enter-try another word")
+                        if cmd == 'm':
+                            continue
+                        elif cmd == 'i':
+                            print("[improving...]")
+                            improvement = query("Improve the following sentence for a {}. The new sentence must include the word '{}'. sentence: {}; improvement:".format(level, word, sentence))
+                            print()
+                            print(improvement)
+                            print()
+                    if cmd == '':
                         break
-                if cmd == 'q':
-                    break
         print()
 
 
