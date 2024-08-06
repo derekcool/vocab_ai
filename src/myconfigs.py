@@ -57,3 +57,10 @@ def save_progress():
     with open(path, "wb") as file:
         pickle.dump(progress, file, pickle.HIGHEST_PROTOCOL)
 
+
+def inc_progress_correct(word):
+    progress["correct"][word] = progress["correct"].get(word, 0) + 1
+
+
+def inc_progress_total(word):
+    progress["total"][word] = progress["total"].get(word, 0) + 1

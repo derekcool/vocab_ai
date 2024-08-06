@@ -39,3 +39,9 @@ def explain_differences(word1, word2):
     level = myconfigs.configs["level"]
     e = query("Explain the difference between {} and {} to a {}. Explain in a short and concise way.".format(word1, word2, level))
     return e
+
+
+def short_definition(word):
+    level = myconfigs.configs["level"]
+    e = query("What's the definition of '{}' to a {}. Just show the definition. The answer must be less than 12 words. The answer should not include the word '{}' itself.".format(word, level, word))
+    return e

@@ -1,12 +1,9 @@
 import random
-from utils import print_obfuscated
+from utils import print_obfuscated, multiple_choice_candidates
 
 
 def multiple_choice_problem(word, words, content_generator, mod):
-    candidates = random.sample(words, 4)
-    if word not in candidates:
-        candidates.pop()
-        candidates.insert(random.randint(0, len(candidates)), word)
+    candidates, answer_index = multiple_choice_candidates(word, words, 4)
     e = content_generator(word, mod)
     print_obfuscated(e, word, ["Here is an example", "Here is a sentence using"])
     print()
@@ -15,10 +12,9 @@ def multiple_choice_problem(word, words, content_generator, mod):
     print()
     answer = input("Select or type the correct word: ")
     try:
-        i = int(answer) - 1
-        if 0 <= i < len(candidates):
-            if candidates[i] == word:
-                return True
+        i = int(answer)
+        if i == answer_index:
+            return True
     except:
         if answer == word:
             return True

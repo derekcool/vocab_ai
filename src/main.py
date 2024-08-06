@@ -21,13 +21,13 @@ def problem_loop(words, problem_generator, content_generator, mod, option_show_e
         total += 1
         print("[creating quiz {}/{} ...]".format(total, len(words)))
         print()
-        myconfigs.progress["total"][word] = myconfigs.progress["total"].get(word, 0) + 1
+        myconfigs.inc_progress_total(word)
         is_correct = problem_generator(word, words, content_generator, mod)
         if is_correct:
             print()
             print("\tCorrect!")
             num_correct += 1
-            myconfigs.progress["correct"][word] = myconfigs.progress["correct"].get(word, 0) + 1
+            myconfigs.inc_progress_correct(word)
         else:
             print("\tIncorrect. The answer is {}.".format(word))
         print()
@@ -114,7 +114,8 @@ def main_loop(words):
         if prog == 'q':
             break
         if prog == '1':
-            reviews.review_words(words)
+            # reviews.review_words(words)
+            reviews.review_quiz(words)
         elif prog == '2':
             problem_loop(words, dictation, None, None, True)
         elif prog == '3':
