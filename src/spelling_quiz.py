@@ -3,7 +3,7 @@ from prompt_utils import generate_explanation
 from utils import print_obfuscated
 
 
-def dictation(word, words, content_generator):
+def dictation(word, words, content_generator, mod):
     while True:
         speech.say(word)
         answer = input("Type the word you heard (Enter-repeat, 1-definition, 2-hint): ")
