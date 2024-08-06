@@ -1,20 +1,5 @@
-import json
 import random
-
-import requests
 import myconfigs
-
-
-def read_words(filename):
-    words = []
-    with open(filename) as f:
-        for line in f.readlines():
-            if line.startswith("#"):
-                continue
-            word = line.strip('\n').lstrip().rstrip()
-            if len(word) > 0:
-                words.append(word)
-    return words
 
 
 def sort_progress(word):
