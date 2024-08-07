@@ -27,7 +27,7 @@ def main_loop(words):
             practice_menu()
         elif prog == '2':
             explore_menu()
-        elif prog == '13':
+        elif prog == '3':
             word_list_loop()
 
         print()

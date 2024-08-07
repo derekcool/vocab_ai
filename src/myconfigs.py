@@ -64,3 +64,11 @@ def inc_progress_correct(word):
 
 def inc_progress_total(word):
     progress["total"][word] = progress["total"].get(word, 0) + 1
+
+
+def get_progress_total(word):
+    return progress["total"].get(word, 0)
+
+
+def get_progress_correct(word):
+    return progress["correct"].get(word, 0)

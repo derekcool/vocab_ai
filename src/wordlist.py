@@ -1,3 +1,6 @@
+from utils import sort_progress
+
+
 words = []
 words_file = None
 
@@ -23,3 +26,8 @@ def has_word(word):
 def add_word(word):
     global words
     words.append(word)
+
+
+def sort_words():
+    global words
+    words.sort(key=sort_progress)

@@ -1,3 +1,4 @@
+import myconfigs
 import wordlist
 import os
 from reviews import review_words
@@ -12,6 +13,7 @@ def word_list_loop():
             print("2: create word list")
             print("3: add word")
             print("4: review words")
+            print("5: show progress")
             print("q: quit to previous menu")
             print()
             prog = input("select the program number: ")
@@ -25,6 +27,16 @@ def word_list_loop():
                 menu_add_word()
             elif prog == '4':
                 review_words(wordlist.words)
+            elif prog == '5':
+                wordlist.sort_words()
+                print("n_correct : word")
+                print("--------------------")
+                for word in wordlist.words:
+                    c = myconfigs.get_progress_correct(word)
+                    print("{}: {}".format(c, word))
+                print()
+                input("Enter to continue")
+
 
 
 def menu_load_word():
