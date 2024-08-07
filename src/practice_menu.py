@@ -5,6 +5,7 @@ from spelling_quiz import dictation
 from prompt_utils import *
 import myconfigs
 import wordlist
+import progress
 
 
 def practice_menu():
@@ -50,13 +51,13 @@ def problem_loop(words, problem_generator, content_generator, mod, option_show_e
         total += 1
         print("[creating quiz {}/{} ...]".format(total, len(words)))
         print()
-        myconfigs.inc_progress_total(word)
+        progress.inc_progress_total(word)
         is_correct = problem_generator(word, words, content_generator, mod)
         if is_correct:
             print()
             print("\tCorrect!")
             num_correct += 1
-            myconfigs.inc_progress_correct(word)
+            progress.inc_progress_correct(word)
         else:
             print("\tIncorrect. The answer is {}.".format(word))
         print()
@@ -78,6 +79,7 @@ def problem_loop(words, problem_generator, content_generator, mod, option_show_e
             elif cmd == 'q':
                 break
         if cmd == 'q':
+            progress.save_progress()
             break
         print()
     print("Summary: total corrects = {}/{} ({:.1f}%)".format(num_correct, total, num_correct * 100 / total))

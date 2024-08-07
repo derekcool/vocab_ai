@@ -1,9 +1,9 @@
 import random
-import myconfigs
+import progress
 
 
 def sort_progress(word):
-    return myconfigs.progress['correct'].get(word, 0)
+    return progress.progress['correct'].get(word, 0)
 
 
 def print_obfuscated(text, word, signatures):

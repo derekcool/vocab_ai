@@ -1,7 +1,7 @@
 import random
 import numpy as np
-
 import myconfigs
+import progress
 import speech
 from prompt_utils import *
 from utils import sort_progress, build_hint, multiple_choice_candidates
@@ -92,6 +92,7 @@ def review_quiz(words):
     random.shuffle(words)
     words.sort(key=sort_progress)
     total = 0
+    num_correct = 0
     for word in words:
         total += 1
         print("[{}/{}]".format(total, len(words)))
@@ -103,7 +104,7 @@ def review_quiz(words):
         hint_index = min(1, max_hint_index)
         while True:
             speech.say(word)
-            answer = input("Type the word you heard (Enter-repeat. 1-hint. q-quit): ")
+            answer = input("Type the word you heard (Enter-repeat. 1-hint): ")
             if answer == '':
                 continue
             elif answer == '1':
@@ -114,10 +115,11 @@ def review_quiz(words):
                 print(hint)
                 print()
             else:
-                myconfigs.inc_progress_total(word)
+                progress.inc_progress_total(word)
                 if answer == word:
+                    num_correct += 1
                     if not hint_used:
-                        myconfigs.inc_progress_correct(word)
+                        progress.inc_progress_correct(word)
                     print()
                     print("\tCorrect!")
                     print()
@@ -126,7 +128,9 @@ def review_quiz(words):
                     print("\tIncorrect. The answer is {}".format(word))
                     print()
                 break
-        print("[next quiz...]")
+        print("[Select the correct definition for '{}']".format(word))
+        total += 1
+        print()
         candidates, answer_index = multiple_choice_candidates(word, words, 3)
         i = 1
         for c in candidates:
@@ -137,18 +141,31 @@ def review_quiz(words):
             print("{}: {}".format(i, _d))
             i += 1
         print()
-        answer = input("Choose the correct definition for word '{}': ".format(word))
-        i = int(answer)
-        myconfigs.inc_progress_total(word)
-        if i == answer_index:
-            myconfigs.inc_progress_correct(word)
-            print()
-            print("\tCorrect!")
-            print()
-        else:
-            print()
-            print("\tIncorrect! The correct answer is {}.".format(answer_index))
-            print()
-        input("Enter for the next word.")
+        while True:
+            answer = input("Which definition is correct?: ".format(word))
+            try:
+                i = int(answer)
+            except:
+                continue
+            progress.inc_progress_total(word)
+            if i == answer_index:
+                progress.inc_progress_correct(word)
+                num_correct += 1
+                print()
+                print("\tCorrect!")
+                print()
+            else:
+                print()
+                print("\tIncorrect! The correct answer is {}.".format(answer_index))
+                print()
+            break
+        cmd = input("Enter for the next word. q-quit")
+        if cmd == 'q':
+            progress.save_progress()
+            break
+    print()
+    print("correct / total = {}/{} = {:.1f}%".format(num_correct, total, num_correct * 100 / total))
+    print()
+    input("Enter to exit reviews")
 
 

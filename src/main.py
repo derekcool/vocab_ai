@@ -3,6 +3,7 @@ from practice_menu import practice_menu
 from explore_menu import explore_menu
 import sys
 import myconfigs
+import progress
 import speech
 import wordlist
 
@@ -47,7 +48,8 @@ if __name__ == '__main__':
             continue
         print("\t{} = {}".format(k, v))
 
-    myconfigs.load_progress()
+    progress_filepath = "{}/{}".format(myconfigs.configs["progress_path"], myconfigs.configs["progress_file"])
+    progress.load_progress(progress_filepath)
     speech.set_rate(myconfigs.configs["speech_rate"])
 
     print()
@@ -66,7 +68,6 @@ if __name__ == '__main__':
     print("---------------------------------------")
 
     main_loop(wordlist.words)
-    myconfigs.save_progress()
 
 
 
