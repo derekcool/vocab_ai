@@ -1,5 +1,5 @@
-import myconfigs
 import wordlist
+import progress
 import os
 from reviews import review_words
 
@@ -32,11 +32,10 @@ def word_list_loop():
                 print("n_correct : word")
                 print("--------------------")
                 for word in wordlist.words:
-                    c = myconfigs.get_progress_correct(word)
+                    c = progress.get_progress_correct(word)
                     print("{}: {}".format(c, word))
                 print()
                 input("Enter to continue")
-
 
 
 def menu_load_word():
