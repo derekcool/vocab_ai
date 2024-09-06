@@ -26,4 +26,4 @@ def dictation(word, words, content_generator, mod):
                 print()
         else:
             break
-    return answer == word
+    return answer.lower() == word.lower()

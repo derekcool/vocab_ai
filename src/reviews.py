@@ -116,7 +116,7 @@ def review_quiz(words):
                 print()
             else:
                 progress.inc_progress_total(word)
-                if answer == word:
+                if answer.lower() == word.lower():
                     num_correct += 1
                     if not hint_used:
                         progress.inc_progress_correct(word)
